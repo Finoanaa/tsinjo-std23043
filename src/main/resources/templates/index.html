@@ -7,6 +7,9 @@
 <body>
 
 <h1>Tsinjo - Fonds d'urgence HEI</h1>
+<h1 th:if="${environment == 'prod'}">Historique - Environnement PROD</h1>
+<h1 th:if="${environment != 'prod'}">Historique - Environnement PREPROD</h1>
+
 
 <!-- Formulaire de don -->
 <form th:action="@{/donate}" method="post">
