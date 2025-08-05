@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tsinjo - Fonds d'urgence HEI</title>
+</head>
+<body>
+
+<h1>Tsinjo - Fonds d'urgence HEI</h1>
+
+<!-- Formulaire de don -->
+<form th:action="@{/donate}" method="post">
+    <fieldset>
+        <legend>Faire un don</legend>
+        <label>Email : <input type="email" name="donorEmail" required /></label><br/>
+        <label>Nom complet : <input type="text" name="donorFullName" required /></label><br/>
+        <label>Montant (en Ar) : <input type="number" name="amount" min="1" required /></label><br/>
+        <label>Moyen de paiement :
+            <select name="paymentMethod" required>
+                <option value="Orange Money">Orange Money</option>
+                <option value="Airtel Money">Airtel Money</option>
+                <option value="Carte bancaire">Carte bancaire</option>
+            </select>
+        </label><br/>
+        <button type="submit">Envoyer</button>
+    </fieldset>
+</form>
+
+<hr/>
+
+<!-- Liste des dons -->
+<h2>Liste des dons</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr><th>Donateur</th><th>Email</th><th>Date paiement</th><th>Montant</th><th>Moyen</th><th>Statut</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="don : ${donations}">
+        <td th:text="${don.donor.fullName}">Nom</td>
+        <td th:text="${don.donor.email}">email</td>
+        <td th:text="${#dates.format(don.payment.paymentDate, 'dd/MM/yyyy HH:mm')}">date</td>
+        <td th:text="${don.payment.amount}">montant</td>
+        <td th:text="${don.payment.paymentMethod}">méthode</td>
+        <td th:text="${don.payment.status}">status</td>
+    </tr>
+    </tbody>
+</table>
+
+<hr/>
+
+<!-- Liste des aides -->
+<h2>Liste des aides</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr><th>Bénéficiaire</th><th>Email</th><th>Date paiement</th><th>Montant</th><th>Description accident</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="help : ${helps}">
+        <td th:text="${help.beneficiary.fullName}">Nom</td>
+        <td th:text="${help.beneficiary.email}">email</td>
+        <td th:text="${#dates.format(help.payment.paymentDate, 'dd/MM/yyyy HH:mm')}">date</td>
+        <td th:text="${help.payment.amount}">montant</td>
+        <td th:text="${help.description}">description</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
