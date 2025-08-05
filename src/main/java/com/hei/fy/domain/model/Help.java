@@ -1,5 +1,7 @@
 package com.hei.fy.domain.model;
 
+import java.util.Optional;
+
 public class Help {
   private long id;
   private Beneficiary beneficiary;
@@ -29,7 +31,7 @@ public class Help {
     return beneficiary;
   }
 
-  public void setBeneficiary(Beneficiary beneficiary) {
+  public void setBeneficiary(Optional<Beneficiary> beneficiary) {
     this.beneficiary = beneficiary;
   }
 
@@ -37,7 +39,7 @@ public class Help {
     return payment;
   }
 
-  public void setPayment(Payment payment) {
+  public void setPayment(Optional<Payment> payment) {
     this.payment = payment;
   }
 
